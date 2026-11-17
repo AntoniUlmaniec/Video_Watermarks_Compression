@@ -1,0 +1,1 @@
+#adapter metody StegaStamp

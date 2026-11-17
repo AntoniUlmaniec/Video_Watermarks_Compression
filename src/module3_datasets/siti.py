@@ -5,6 +5,7 @@ from pathlib import Path
 from siti_tools.siti import ColorRange, SiTiCalculator
 
 if __name__ == "__main__":
+    Path("results").mkdir(exist_ok=True)
     with open("results/siti.csv", "w") as file:
         file.write("content,si_mean,si_max,ti_mean,ti_max\n")
 

@@ -1,4 +1,4 @@
-#Generator nagrań syntetycznych
+#generator nagrań syntetycznych
 
 import subprocess
 from pathlib import Path

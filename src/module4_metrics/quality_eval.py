@@ -24,7 +24,7 @@ def compute_psnr(video, reference):
 
 
 def compute_vmaf(video, reference):
-    #Średni VMAF (0-100)
+    #średni VMAF (0-100)
     output = run_metric(video, reference, f"libvmaf=shortest=1:n_threads={os.cpu_count()}")
     found = re.search(r"VMAF score: (\S+)", output)
     return float(found.group(1))

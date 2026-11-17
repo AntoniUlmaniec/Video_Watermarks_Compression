@@ -1,5 +1,5 @@
 #BER = liczba błędnych bitów / liczba wszystkich bitów
-#0 oznacza odczyt bez błędów, a 0,5 poziom zgadywania
+#0 - odczyt bez błędów, a 0,5 - zgadywanie
 
 import numpy as np
 

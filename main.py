@@ -29,11 +29,19 @@ METHODS = [
         "adapter": "src/module1_watermark/videoseal_adapter.py",
         "n_bits": 256,
     },
+    {
+        "name": "stegastamp",
+        "python": r"C:\Users\antek\anaconda3\envs\stegastamp\python.exe",
+        "adapter": "src/module1_watermark/stegastamp_adapter.py",
+        "n_bits": 100,
+    },
 ]
 
 CODECS = {
-    "libx264": [18, 23, 28, 33, 38],
-    "libx265": [23, 28, 33, 38, 43],
+    "libx264": [17, 23, 29, 35, 41],
+    "libx265": [22, 28, 34, 40, 46],
+    #"libx264": [23],
+    #"libx265": [28],
 }
 
 SEED = 2026
@@ -83,18 +91,19 @@ def save(writer, results_file, row):
 def main():
     for folder in ["data/03_watermarked", "data/04_compressed", "data/05_extracted", "results"]:
         Path(folder).mkdir(parents=True, exist_ok=True)
+    total_start = time.perf_counter()
 
     with open(RESULTS_FILE, "w", newline="", encoding="utf-8") as results_file:
         writer = csv.DictWriter(results_file, fieldnames=COLUMNS)
         writer.writeheader()
 
-        for method in METHODS:
-            message = make_message(method["n_bits"])
-            message_file = f"data/03_watermarked/{method['name']}_message.txt"
-            with open(message_file, "w") as file:
-                file.write("".join(str(bit) for bit in message))
+        for source in SOURCES:
+            for method in METHODS:
+                message = make_message(method["n_bits"])
+                message_file = f"data/03_watermarked/{method['name']}_message.txt"
 
-            for source in SOURCES:
+                with open(message_file, "w") as file:
+                    file.write("".join(str(bit) for bit in message))
                 common = {"content": source.stem, "method": method["name"]}
 
                 # 1. nagranie bez znaku
@@ -105,7 +114,7 @@ def main():
                 marked = Path(f"data/03_watermarked/{source.stem}_{method['name']}.mkv")
                 start = time.perf_counter()
                 run_adapter(method, "embed", source, marked, message_file)
-                embed_s = round(time.perf_counter() - start, 1)  # czas znakowania w sekundach
+                embed_s = round(time.perf_counter() - start, 1)
                 row = {**common, "stage": "znak_bez_kompresji", "codec": "brak", "crf": "", "embed_s": embed_s}
                 save(writer, results_file, measure(method, marked, source, message, row))
 
@@ -118,6 +127,7 @@ def main():
                         save(writer, results_file, measure(method, compressed, source, message, row))
 
     print("Gotowe:", RESULTS_FILE)
+    print("Czas całości:", round((time.perf_counter() - total_start) / 3600, 2), "h")
 
 
 if __name__ == "__main__":

@@ -3,12 +3,11 @@ import subprocess
 
 
 def compress_video(input_path, output_path, codec, crf):
-    subprocess.run([
-        "ffmpeg", "-y", "-v", "error",
-        "-i", str(input_path),
-        "-c:v", codec, "-crf", str(crf), "-pix_fmt", "yuv420p",
-        str(output_path),
-    ], check=True)
+    command = ["ffmpeg", "-y", "-v", "error", "-i", str(input_path),
+               "-c:v", codec, "-crf", str(crf), "-pix_fmt", "yuv420p"]
+    if codec == "libx265":
+        command += ["-x265-params", "log-level=error"]
+    subprocess.run(command + [str(output_path)], check=True)
 
 
 def get_bitrate_kbps(video_path):

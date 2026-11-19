@@ -1,0 +1,13 @@
+content,method,stage,codec,crf,bitrate_kbps,psnr_y_db,psnr_u_db,vmaf,ber_mean,ber_voted,embed_s,extract_s
+chimera_freeway_1920x1080_2398fps_crf10,dwtDct,bez_znaku,brak,,47538.124,,,,0.5,0.5,,112.6
+chimera_freeway_1920x1080_2398fps_crf10,dwtDct,znak_bez_kompresji,brak,,198442.164,43.315082,42.01638,99.98578,0.49505208333333334,0.5,129.1,85.2
+chimera_freeway_1920x1080_2398fps_crf10,dwtDct,po_kompresji,libx264,23,3020.04,40.008747,44.500629,98.650689,0.5045572916666666,0.5,,85.8
+chimera_freeway_1920x1080_2398fps_crf10,dwtDct,po_kompresji,libx265,28,1316.599,38.691315,44.113308,95.255251,0.5,0.5,,76.7
+chimera_freeway_1920x1080_2398fps_crf10,videoseal,bez_znaku,brak,,47538.124,,,,0.4942545572916667,0.5078125,,40.1
+chimera_freeway_1920x1080_2398fps_crf10,videoseal,znak_bez_kompresji,brak,,183571.263,44.730047,59.163157,99.052283,0.0028157552083333333,0.0,146.0,34.4
+chimera_freeway_1920x1080_2398fps_crf10,videoseal,po_kompresji,libx264,23,2848.958,40.567275,46.623466,95.615177,0.025602213541666665,0.0078125,,26.3
+chimera_freeway_1920x1080_2398fps_crf10,videoseal,po_kompresji,libx265,28,1336.11,39.227663,44.999511,92.542433,0.058935546875,0.015625,,26.5
+chimera_freeway_1920x1080_2398fps_crf10,stegastamp,bez_znaku,brak,,47538.124,,,,0.504,0.52,,31.0
+chimera_freeway_1920x1080_2398fps_crf10,stegastamp,znak_bez_kompresji,brak,,194840.251,31.641741,53.395463,75.423739,4.1666666666666665e-05,0.0,113.3,29.5
+chimera_freeway_1920x1080_2398fps_crf10,stegastamp,po_kompresji,libx264,23,3947.044,31.404373,46.347718,72.997281,8.333333333333333e-05,0.0,,30.6
+chimera_freeway_1920x1080_2398fps_crf10,stegastamp,po_kompresji,libx265,28,1835.425,31.323372,44.83821,71.988773,0.00016666666666666666,0.0,,28.9

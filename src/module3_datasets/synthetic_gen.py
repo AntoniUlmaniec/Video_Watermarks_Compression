@@ -6,35 +6,36 @@ from pathlib import Path
 OUTPUT_DIR = Path("data/02_synthetic")
 SIZE = "1920x1080"
 FPS = 30
-DURATION = 10  # sekundy
+DURATION = 1
+SLOW_DURATION = 3
 NATURAL_VIDEO = "data/01_raw/sintel_dragons_1920x816_24fps_crf10.mp4"
 
 
-def color(value):
-    return f"color=c={value}:s={SIZE}:r={FPS}:d={DURATION}"
+def color(value, duration=DURATION):
+    return f"color=c={value}:s={SIZE}:r={FPS}:d={duration}"
 
 
 GENERATED = {
     # 1. jednolite kolory
     "1_solid_black": color("#000000"),
     "1_solid_white": color("#FFFFFF"),
-    "1_solid_red": color("#FF0000"),
+    #"1_solid_red": color("#FF0000"),
     "1_solid_green": color("#00FF00"),
-    "1_solid_blue": color("#0000FF"),
+    #"1_solid_blue": color("#0000FF"),
     "1_solid_yellow": color("#FFFF00"),
 
     # 2. inne jasności
     "2_solid_gray": color("#808080"),
     "2_solid_dark_green": color("#008000"),
     "2_solid_dark_yellow": color("#808000"),
-    "2_solid_light_red": color("#FF8080"),
-    "2_solid_light_blue": color("#8080FF"),
+    #"2_solid_light_red": color("#FF8080"),
+    #"2_solid_light_blue": color("#8080FF"),
 
     # 3. zmiana koloru
-    "3_changing_color": color("red") + f",hue=h=t*360/{DURATION}",
+    "3_changing_color": color("red", SLOW_DURATION) + f",hue=h=t*360/{SLOW_DURATION},format=rgb24",
 
     # 4. zmiana jasności
-    "4_changing_brightness": color("white") + f",fade=t=in:st=0:d={DURATION}",
+    "4_changing_brightness": color("white", SLOW_DURATION) + f",fade=t=in:st=0:d={SLOW_DURATION}",
 
     # 5. szum czarno-biały i kolorowy
     "5_noise_bw": color("gray") + ",noise=c0s=100:c0f=t+u",
@@ -70,4 +71,4 @@ if __name__ == "__main__":
     for name, source in GENERATED.items():
         encode(["-f", "lavfi", "-i", source], name)
     for channel in CHANNEL_MAPPINGS:
-        encode(["-i", NATURAL_VIDEO, "-vf", channel_filter(channel)], f"6_film_{channel}_noise")
+        encode(["-t", str(DURATION), "-i", NATURAL_VIDEO, "-vf", channel_filter(channel)], f"6_film_{channel}_noise")

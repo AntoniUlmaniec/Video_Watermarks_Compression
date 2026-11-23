@@ -1,0 +1,4 @@
+method,psnr_y_db,psnr_u_db,vmaf,ber_libx264_crf23_srednia,ber_libx264_crf23_najgorsze,ber_libx265_crf28_srednia,ber_libx265_crf28_najgorsze,embed_ms_na_klatke,extract_ms_na_klatke
+dwtDct,43.39,42.64,99.456,0.5,0.5,0.5,0.5,389.417,282.333
+stegastamp,31.251,50.711,78.232,0.0,0.0,0.0,0.0,328.25,121.25
+videoseal,44.379,58.528,97.51,0.003,0.012,0.008,0.023,557.833,133.417

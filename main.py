@@ -48,10 +48,7 @@ SEED = 2026
 RESULTS_FILE = "results/experiment_logs.csv"
 #-config-
 
-COLUMNS = [
-    "content", "method", "stage", "codec", "crf", "bitrate_kbps",
-    "psnr_y_db", "psnr_u_db", "vmaf", "ber_mean", "ber_voted", "embed_s", "extract_s",
-]
+COLUMNS = ["content", "method", "stage", "codec", "crf", "bitrate_kbps", "psnr_y_db", "psnr_u_db", "vmaf", "ber_mean", "ber_voted", "embed_s", "extract_s"]
 
 
 def make_message(n_bits):
